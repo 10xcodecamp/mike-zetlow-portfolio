@@ -1,7 +1,5 @@
 import React from "react";
 import starIcon from "../icon/star.svg";
-import video1 from "../image/video1.webp";
-import video2 from "../image/video2.webp";
 import linkIcon from "../icon/link.svg";
 
 function Project(props) {
@@ -16,10 +14,10 @@ function Project(props) {
          <div className="col-12 col-md-4">
             <a href={props.project.youtubeUrl}>
                <img
-                  src={video1}
+                  src={require("../image/" + props.project.image)}
                   width="510px"
                   className="img-fluid"
-                  alt="Validation of Email and Password on Account Creation"
+                  alt={props.project.title}
                />
             </a>
          </div>
