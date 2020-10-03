@@ -22,7 +22,7 @@ export default function Home() {
                      <img
                         src={githubLogo}
                         width="24px"
-                        className="ml-4 mt-n1"
+                        className="mt-n1"
                         alt="Github logo"
                      />
                      <span className="ml-2">Github</span>
