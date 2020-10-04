@@ -18,7 +18,7 @@ export const projects = [
       rating: 5,
       desc:
          "Prototype of White Bear, an app that helps students memorize with spaced repetition.",
-      totalMinutes: 4,
+      totalMinutes: 16,
       postedAt: 1601653811891,
       githubUrl: "https://github.com/10xcodecamp/white-bear-fast-track",
       image: "walkthrough-of-the-white-bear-prototype.webp",
