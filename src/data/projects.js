@@ -6,7 +6,7 @@ export const projects = [
       desc:
          "Validation of email and password fields in White Bear, following best security and UX practices.",
       totalMinutes: 8,
-      postedAt: 1601653825166,
+      postedAt: 1601824397274,
       githubUrl: "https://github.com/10xcodecamp/white-bear-functions",
       image: "validation-of-email-and-password-on-account-creation.webp",
       youtubeUrl: "https://www.youtube.com/watch?v=qnRk4J_atf0",
