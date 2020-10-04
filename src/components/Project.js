@@ -14,7 +14,7 @@ export default class Project extends React.Component {
    }
 
    setIsHoveredOver(isHoveredOver) {
-      this.setState({ isHoveredOver: isHoveredOver });
+      this.setState({ isHoveredOver });
    }
 
    displayStars() {

@@ -9,7 +9,13 @@ console.log(projects);
 export default class Home extends React.Component {
    constructor() {
       super();
-      this.state = {};
+      this.state = {
+         isAdvanced: false,
+      };
+   }
+
+   setIsAdvanced() {
+      this.setState({ isAdvanced: !this.state.isAdvanced });
    }
 
    render() {
@@ -32,6 +38,10 @@ export default class Home extends React.Component {
                               type="checkbox"
                               className="custom-control-input"
                               id="advanced-view"
+                              checked={this.state.isAdvanced}
+                              onChange={() => {
+                                 this.setIsAdvanced();
+                              }}
                            />
                            <label
                               className="custom-control-label"
