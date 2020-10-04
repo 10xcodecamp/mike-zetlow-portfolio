@@ -12,8 +12,8 @@ export default class Project extends React.Component {
       };
    }
 
-   setIsHoveredOver() {
-      console.log("Ok, let's change the isHoveredOver state to true");
+   setIsHoveredOver(isHoveredOver) {
+      this.setState({ isHoveredOver: isHoveredOver });
    }
 
    displayStars() {
@@ -30,7 +30,15 @@ export default class Project extends React.Component {
    render() {
       return (
          <div className="row mb-5">
-            <div className="col-12 mb-2">
+            <div
+               className="col-12 mb-2"
+               onMouseEnter={() => {
+                  this.setIsHoveredOver(true);
+               }}
+               onMouseLeave={() => {
+                  this.setIsHoveredOver(false);
+               }}
+            >
                <a
                   href={this.props.project.youtubeUrl}
                   className="text-reset text-decoration-none"
@@ -40,7 +48,15 @@ export default class Project extends React.Component {
                   </h3>
                </a>
             </div>
-            <div className="col-12 col-md-4">
+            <div
+               className="col-12 col-md-4"
+               onMouseEnter={() => {
+                  this.setIsHoveredOver(true);
+               }}
+               onMouseLeave={() => {
+                  this.setIsHoveredOver(false);
+               }}
+            >
                <a href={this.props.project.youtubeUrl}>
                   <img
                      src={require("../image/" + this.props.project.image)}
@@ -54,6 +70,12 @@ export default class Project extends React.Component {
                <a
                   href={this.props.project.youtubeUrl}
                   className="text-decoration-none text-reset"
+                  onMouseEnter={() => {
+                     this.setIsHoveredOver(true);
+                  }}
+                  onMouseLeave={() => {
+                     this.setIsHoveredOver(false);
+                  }}
                >
                   <p>
                      {this.displayStars()}
