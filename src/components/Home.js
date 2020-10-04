@@ -87,7 +87,13 @@ export default class Home extends React.Component {
                   </div>
 
                   {projects.map((project) => {
-                     return <Project project={project} key={project.id} />;
+                     return (
+                        <Project
+                           project={project}
+                           key={project.id}
+                           isAdvanced={this.state.isAdvanced}
+                        />
+                     );
                   })}
                </div>
             </div>

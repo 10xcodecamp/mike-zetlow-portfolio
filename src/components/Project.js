@@ -91,10 +91,13 @@ export default class Project extends React.Component {
                      {formatDate(this.props.project.postedAt, "MMM. d, yyyy")}
                   </p>
                </a>
-               <a href={this.props.project.githubUrl}>
-                  <img src={linkIcon} width="16px" className="mr-2" alt="" />
-                  {truncate(this.props.project.githubUrl, 33)}
-               </a>
+
+               {this.props.isAdvanced && (
+                  <a href={this.props.project.githubUrl}>
+                     <img src={linkIcon} width="16px" className="mr-2" alt="" />
+                     {truncate(this.props.project.githubUrl, 33)}
+                  </a>
+               )}
             </div>
          </div>
       );
