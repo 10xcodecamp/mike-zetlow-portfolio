@@ -4,9 +4,20 @@ import linkIcon from "../icon/link.svg";
 import { truncate } from "../utils/helpers";
 import formatDate from "date-fns/format";
 
-export default function Project(props) {
-   const rating = props.project.rating;
-   function displayStars() {
+export default class Project extends React.Component {
+   constructor() {
+      super();
+      this.state = {
+         isHoveredOver: false,
+      };
+   }
+
+   setIsHoveredOver() {
+      console.log("Ok, let's change the isHoveredOver state to true");
+   }
+
+   displayStars() {
+      const rating = this.props.project.rating;
       let stars = [];
       for (let i = 0; i < rating; i++) {
          stars = stars.concat(
@@ -16,41 +27,51 @@ export default function Project(props) {
       return stars;
    }
 
-   return (
-      <div className="row mb-5">
-         <div className="col-12 mb-2">
-            <a href={props.project.youtubeUrl} className="text-reset">
-               <h3 className="font-weight-normal">{props.project.title}</h3>
-            </a>
+   render() {
+      return (
+         <div className="row mb-5">
+            <div className="col-12 mb-2">
+               <a
+                  href={this.props.project.youtubeUrl}
+                  className="text-reset text-decoration-none"
+               >
+                  <h3 className="font-weight-normal">
+                     {this.props.project.title}
+                  </h3>
+               </a>
+            </div>
+            <div className="col-12 col-md-4">
+               <a href={this.props.project.youtubeUrl}>
+                  <img
+                     src={require("../image/" + this.props.project.image)}
+                     width="510px"
+                     className="img-fluid"
+                     alt={this.props.project.title}
+                  />
+               </a>
+            </div>
+            <div className="col-12 col-md-8 mt-3 mt-md-n1">
+               <a
+                  href={this.props.project.youtubeUrl}
+                  className="text-decoration-none text-reset"
+               >
+                  <p>
+                     {this.displayStars()}
+                     <span className="ml-2">
+                        {this.props.project.desc} (
+                        {this.props.project.totalMinutes} min.)
+                     </span>
+                  </p>
+                  <p>
+                     {formatDate(this.props.project.postedAt, "MMM. d, yyyy")}
+                  </p>
+               </a>
+               <a href={this.props.project.githubUrl}>
+                  <img src={linkIcon} width="16px" className="mr-2" alt="" />
+                  {truncate(this.props.project.githubUrl, 33)}
+               </a>
+            </div>
          </div>
-         <div className="col-12 col-md-4">
-            <a href={props.project.youtubeUrl}>
-               <img
-                  src={require("../image/" + props.project.image)}
-                  width="510px"
-                  className="img-fluid"
-                  alt={props.project.title}
-               />
-            </a>
-         </div>
-         <div className="col-12 col-md-8 mt-3 mt-md-n1">
-            <a
-               href={props.project.youtubeUrl}
-               className="text-decoration-none text-reset"
-            >
-               <p>
-                  {displayStars()}
-                  <span className="ml-2">
-                     {props.project.desc} ({props.project.totalMinutes} min.)
-                  </span>
-               </p>
-               <p>{formatDate(props.project.postedAt, "MMM. d, yyyy")}</p>
-            </a>
-            <a href={props.project.githubUrl}>
-               <img src={linkIcon} width="16px" className="mr-2" alt="" />
-               {truncate(props.project.githubUrl, 33)}
-            </a>
-         </div>
-      </div>
-   );
+      );
+   }
 }
