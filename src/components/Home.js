@@ -7,10 +7,14 @@ import Bio from "./Bio";
 console.log(projects);
 
 export default class Home extends React.Component {
-   constructor() {
-      super();
+   constructor(props) {
+      super(props);
+      const activeProjects = projects.filter((project) => {
+         return project.isActive;
+      });
       this.state = {
          isAdvanced: false,
+         projects: activeProjects,
       };
    }
 
@@ -86,7 +90,7 @@ export default class Home extends React.Component {
                      </div>
                   </div>
 
-                  {projects.map((project) => {
+                  {this.state.projects.map((project) => {
                      return (
                         <Project
                            project={project}
