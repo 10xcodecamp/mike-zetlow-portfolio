@@ -18,7 +18,7 @@ export default class Home extends React.Component {
          isAdvanced: false,
          displayedProjects: activeProjects,
          searchInput: "",
-         projectOrder: "most recent",
+         projectOrder: '["postedAt", "desc"]',
       };
    }
 
@@ -46,16 +46,25 @@ export default class Home extends React.Component {
 
    setProjectOrder(e) {
       const projectOrder = e.target.value;
+      console.log(projectOrder);
       this.setState((prevState) => {
          return {
             projectOrder: projectOrder,
-            displayedProjects: orderBy(
+            displayedProjects: getOrderedProjects(
                prevState.displayedProjects,
-               "postedAt",
-               "asc"
+               projectOrder
             ),
          };
       });
+
+      function getOrderedProjects(arr, orderStr) {
+         if (orderStr === "most recent") {
+            return orderBy(arr, "postedAt", "desc");
+         }
+         if (orderStr === "most popular") {
+            return orderBy(arr, "rating", "desc");
+         }
+      }
    }
 
    render() {
@@ -104,9 +113,10 @@ export default class Home extends React.Component {
                               type="radio"
                               id="most-recent"
                               name="project-order"
-                              value="most recent"
+                              value='["postedAt", "desc"]'
                               checked={
-                                 this.state.projectOrder === "most recent"
+                                 this.state.projectOrder ===
+                                 '["postedAt", "desc"]'
                               }
                               onChange={(e) => {
                                  this.setProjectOrder(e);
@@ -125,9 +135,10 @@ export default class Home extends React.Component {
                               type="radio"
                               id="most-popular"
                               name="project-order"
-                              value="most popular"
+                              value='["rating", "desc"]'
                               checked={
-                                 this.state.projectOrder === "most popular"
+                                 this.state.projectOrder ===
+                                 '["rating", "desc"]'
                               }
                               onChange={(e) => {
                                  this.setProjectOrder(e);
