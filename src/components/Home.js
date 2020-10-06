@@ -13,12 +13,15 @@ export default class Home extends React.Component {
       const activeProjects = projects.filter((project) => {
          return project.isActive;
       }); // imagine we are returning the filtered results from an API
+      const defaultOrder = '["postedAt", "desc"]';
+      const params = JSON.parse(defaultOrder);
+      const orderedProjects = orderBy(activeProjects, ...params);
       this.state = {
-         activeProjects: activeProjects,
+         activeProjects: orderedProjects,
          isAdvanced: false,
-         displayedProjects: activeProjects,
+         displayedProjects: orderedProjects,
          searchInput: "",
-         projectOrder: '["postedAt", "desc"]',
+         projectOrder: defaultOrder,
       };
    }
 
@@ -46,25 +49,13 @@ export default class Home extends React.Component {
 
    setProjectOrder(e) {
       const projectOrder = e.target.value;
-      console.log(projectOrder);
+      const params = JSON.parse(projectOrder);
       this.setState((prevState) => {
          return {
             projectOrder: projectOrder,
-            displayedProjects: getOrderedProjects(
-               prevState.displayedProjects,
-               projectOrder
-            ),
+            displayedProjects: orderBy(prevState.displayedProjects, ...params),
          };
       });
-
-      function getOrderedProjects(arr, orderStr) {
-         if (orderStr === "most recent") {
-            return orderBy(arr, "postedAt", "desc");
-         }
-         if (orderStr === "most popular") {
-            return orderBy(arr, "rating", "desc");
-         }
-      }
    }
 
    render() {
