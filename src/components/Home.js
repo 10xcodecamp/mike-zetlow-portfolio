@@ -11,10 +11,11 @@ export default class Home extends React.Component {
       super(props);
       const activeProjects = projects.filter((project) => {
          return project.isActive;
-      });
+      }); // imagine we are returning the filtered results from an API
       this.state = {
+         activeProjects: activeProjects,
          isAdvanced: false,
-         projects: activeProjects,
+         displayedProjects: activeProjects,
          searchInput: "",
       };
    }
@@ -24,14 +25,14 @@ export default class Home extends React.Component {
    }
 
    setSearchInput(e) {
-      console.log(e.target.value);
-      this.setState((state) => {
+      const searchInput = e.target.value;
+      this.setState((prevState) => {
          return {
-            searchInput: e.target.value,
-            projects: state.projects.filter((project) => {
+            searchInput: searchInput,
+            displayedProjects: prevState.activeProjects.filter((project) => {
                return project.title
                   .toLowerCase()
-                  .includes(state.searchInput.toLowerCase());
+                  .includes(searchInput.toLowerCase());
             }),
          };
       });
@@ -109,7 +110,7 @@ export default class Home extends React.Component {
                      </div>
                   </div>
 
-                  {this.state.projects.map((project) => {
+                  {this.state.displayedProjects.map((project) => {
                      return (
                         <Project
                            project={project}
