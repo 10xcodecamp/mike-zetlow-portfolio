@@ -42,6 +42,8 @@ export default class Project extends React.Component {
             >
                <a
                   href={this.props.project.youtubeUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className={getCssClasses("text-reset text-decoration-none", {
                      "text-underline": this.state.isHoveredOver,
                   })}
@@ -60,7 +62,11 @@ export default class Project extends React.Component {
                   this.setIsHoveredOver(false);
                }}
             >
-               <a href={this.props.project.youtubeUrl}>
+               <a
+                  href={this.props.project.youtubeUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+               >
                   <img
                      src={require("../image/" + this.props.project.image)}
                      width="510px"
@@ -72,6 +78,8 @@ export default class Project extends React.Component {
             <div className="col-12 col-md-8 mt-3 mt-md-n1">
                <a
                   href={this.props.project.youtubeUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="text-decoration-none text-reset"
                   onMouseEnter={() => {
                      this.setIsHoveredOver(true);
@@ -93,7 +101,11 @@ export default class Project extends React.Component {
                </a>
 
                {this.props.isAdvanced && (
-                  <a href={this.props.project.githubUrl}>
+                  <a
+                     href={this.props.project.githubUrl}
+                     target="_blank"
+                     rel="noopener noreferrer"
+                  >
                      <img src={linkIcon} width="16px" className="mr-2" alt="" />
                      {truncate(this.props.project.githubUrl, 33)}
                   </a>

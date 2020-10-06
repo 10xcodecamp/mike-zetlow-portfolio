@@ -11,7 +11,12 @@ export default function Bio() {
             Full stack developer
          </p>
          <p className="lead font-weight-normal text-center mb-4 mb-sm-5">
-            <a href="https://www.google.com" className="d-inline-block">
+            <a
+               href="https://www.google.com"
+               target="_blank"
+               rel="noopener noreferrer"
+               className="d-inline-block"
+            >
                <img
                   src={githubLogo}
                   width="24px"
@@ -20,7 +25,12 @@ export default function Bio() {
                />
                <span className="ml-2">Github</span>
             </a>
-            <a href="https://www.google.com" className="d-inline-block">
+            <a
+               href="https://www.google.com"
+               target="_blank"
+               rel="noopener noreferrer"
+               className="d-inline-block"
+            >
                <img
                   src={linkedInLogo}
                   width="20px"
@@ -29,7 +39,12 @@ export default function Bio() {
                />
                <span className="ml-2">LinkedIn</span>
             </a>
-            <a href="https://www.google.com" className="d-inline-block">
+            <a
+               href="https://www.google.com"
+               target="_blank"
+               rel="noopener noreferrer"
+               className="d-inline-block"
+            >
                <img
                   src={youtubeLogo}
                   width="28px"

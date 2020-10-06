@@ -30,9 +30,13 @@ export default class Home extends React.Component {
          return {
             searchInput: searchInput,
             displayedProjects: prevState.activeProjects.filter((project) => {
-               return project.title
-                  .toLowerCase()
-                  .includes(searchInput.toLowerCase());
+               const lowerCasedInput = searchInput.toLowerCase();
+               const projectTitle = project.title.toLowerCase();
+               const projectDesc = project.desc.toLowerCase();
+               return (
+                  projectTitle.includes(lowerCasedInput) ||
+                  projectDesc.includes(lowerCasedInput)
+               );
             }),
          };
       });
