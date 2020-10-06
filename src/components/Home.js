@@ -15,11 +15,26 @@ export default class Home extends React.Component {
       this.state = {
          isAdvanced: false,
          projects: activeProjects,
+         searchInput: "",
       };
    }
 
    setIsAdvanced() {
       this.setState({ isAdvanced: !this.state.isAdvanced });
+   }
+
+   setSearchInput(e) {
+      console.log(e.target.value);
+      this.setState((state) => {
+         return {
+            searchInput: e.target.value,
+            projects: state.projects.filter((project) => {
+               return project.title
+                  .toLowerCase()
+                  .includes(state.searchInput.toLowerCase());
+            }),
+         };
+      });
    }
 
    render() {
@@ -34,6 +49,10 @@ export default class Home extends React.Component {
                            id="search-projects"
                            className="form-control"
                            placeholder="Search projects"
+                           value={this.state.searchInput}
+                           onChange={(e) => {
+                              this.setSearchInput(e);
+                           }}
                         />
                      </div>
                      <div className="col-12 col-sm-4">
