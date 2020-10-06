@@ -3,6 +3,7 @@ import "../style/master.scss";
 import Project from "./Project";
 import { projects } from "../data/projects";
 import Bio from "./Bio";
+import orderBy from "lodash/orderBy";
 
 console.log(projects);
 
@@ -44,7 +45,17 @@ export default class Home extends React.Component {
    }
 
    setProjectOrder(e) {
-      console.log(e.target.value);
+      const projectOrder = e.target.value;
+      this.setState((prevState) => {
+         return {
+            projectOrder: projectOrder,
+            displayedProjects: orderBy(
+               prevState.displayedProjects,
+               "postedAt",
+               "asc"
+            ),
+         };
+      });
    }
 
    render() {
