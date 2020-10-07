@@ -26,15 +26,16 @@ export default class Home extends React.Component {
       };
    }
 
-   updateState(key, value) {
-      this.setState({ [key]: value });
-      // const partialState = {};
-      // partialState[key] = value;
-      // this.setState(partialState);
-   }
-
-   setIsAdvanced() {
-      this.setState({ isAdvanced: !this.state.isAdvanced });
+   updateState(e) {
+      let value = e.target.value;
+      if (value === "true" || value === "false") {
+         value = safelyParseJson(value); // "true" will turn into true
+      }
+      // eslint-disable-next-line
+      if (value == Number(value)) {
+         value = safelyParseJson(value); // "4" will turn into 4
+      }
+      this.setState({ [e.target.name]: value });
    }
 
    setSearchInput(e) {
@@ -89,16 +90,15 @@ export default class Home extends React.Component {
                            <input
                               type="checkbox"
                               className="custom-control-input"
-                              name="isAdvanced"
+                              id="isAdvanced"
                               checked={this.state.isAdvanced}
+                              name="isAdvanced"
                               value={!this.state.isAdvanced}
-                              onChange={() => {
-                                 this.setIsAdvanced();
-                              }}
+                              onChange={(e) => this.updateState(e)}
                            />
                            <label
                               className="custom-control-label"
-                              htmlFor="advanced-view"
+                              htmlFor="isAdvanced"
                            >
                               Advanced view
                            </label>
