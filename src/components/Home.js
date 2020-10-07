@@ -26,6 +26,13 @@ export default class Home extends React.Component {
       };
    }
 
+   updateState(key, value) {
+      this.setState({ [key]: value });
+      // const partialState = {};
+      // partialState[key] = value;
+      // this.setState(partialState);
+   }
+
    setIsAdvanced() {
       this.setState({ isAdvanced: !this.state.isAdvanced });
    }
@@ -82,8 +89,9 @@ export default class Home extends React.Component {
                            <input
                               type="checkbox"
                               className="custom-control-input"
-                              id="advanced-view"
+                              name="isAdvanced"
                               checked={this.state.isAdvanced}
+                              value={!this.state.isAdvanced}
                               onChange={() => {
                                  this.setIsAdvanced();
                               }}
